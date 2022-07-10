@@ -18,6 +18,13 @@ app.get('/', (req, res) => {
 
 app.use('/public', express.static(__dirname + '/public'));
 
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+}, (req, res) => {
+    res.send({"time": req.time});
+});
+
 app.get('/json', (req, res) => {
     let message = "Hello json";
 
