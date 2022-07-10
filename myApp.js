@@ -4,6 +4,12 @@ let dotenv = require('dotenv').config();
 
 console.log("Hello World");
 
+app.use('/', (req, res, next) => {
+    let logString = `${req.method} ${req.path} - ${req.ip}`;
+    console.log(logString);
+    next();
+});
+
 app.get('/', (req, res) => {
 //    res.send('Hello Express');
     let absolutePath = __dirname + '/views/index.html';
